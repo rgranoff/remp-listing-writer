@@ -39,7 +39,10 @@
     .menu-btn span { display: block; width: 24px; height: 1.5px; background: #000; margin: 5px 0; }
 
     /* Chat fills the first screen under the header */
-    .chat { display: block; border: 0; width: 100%; height: calc(100vh - var(--header-h)); height: calc(100dvh - var(--header-h)); }
+    /* Chat leaves a band at the bottom so the footer is visible and the page can scroll */
+    :root { --peek: 140px; }
+    .chat { display: block; border: 0; width: 100%; min-height: 480px;
+      height: calc(100vh - var(--header-h) - var(--peek)); height: calc(100dvh - var(--header-h) - var(--peek)); }
 
     /* Footer (matches the site footer) */
     .site-footer { background: #000; color: #fff; padding: 64px var(--pad) 56px; }
@@ -55,7 +58,7 @@
     .f-badges img { width: 323px; height: auto; display: block; }
 
     @media (max-width: 1100px) {
-      :root { --header-h: 64px; }
+      :root { --header-h: 64px; --peek: 96px; }
       .site-header { padding: 0 16px; gap: 12px; }
       .logo img { height: auto; max-height: 18px; }
       .menu-btn { display: block; }
