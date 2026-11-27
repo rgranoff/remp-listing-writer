@@ -22,14 +22,16 @@
     body { font-family: "Poppins", sans-serif; font-weight: 300; font-size: 16px; color: #000; }
 
     /* Header */
+    /* Same rules as the Squarespace header: 4vw side padding, ~1.3vw top/bottom,
+       ~1.1vw between items, menu wraps only when it runs out of room */
     .site-header {
-      position: relative; z-index: 20; height: var(--header-h);
-      display: flex; align-items: center; justify-content: space-between; gap: 24px;
-      padding: 0 var(--pad); background: #fff;
+      position: relative; z-index: 20; min-height: 64px;
+      display: flex; align-items: center; justify-content: space-between; gap: 13px;
+      padding: 1.3vw var(--pad); background: #fff;
     }
-    .logo { min-width: 0; flex: 0 1 auto; }
+    .logo { min-width: 0; flex: 0 0 auto; }
     .logo img { display: block; height: 32px; width: auto; max-width: 100%; object-fit: contain; object-position: left center; }
-    .nav { display: flex; flex-wrap: wrap; justify-content: flex-end; column-gap: 16px; max-width: 655px; }
+    .nav { flex: 1 1 auto; display: flex; flex-wrap: wrap; justify-content: flex-end; column-gap: 1.1vw; }
     .nav a {
       color: #000; text-decoration: none; font-size: 16px; line-height: 32px; white-space: nowrap;
       background: linear-gradient(#000,#000) no-repeat left calc(100% - 2px) / 0 1px; transition: background-size .2s;
@@ -63,11 +65,11 @@
     .f-badges { display: flex; justify-content: center; margin-top: 34px; }
     .f-badges img { width: 323px; height: auto; display: block; }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 767px) {
       :root { --header-h: 64px; --peek: 96px; --band: 92px; }
       .title-band h1 { font-size: 24px; }
       .title-band p { font-size: 14px; margin-top: 4px; }
-      .site-header { padding: 0 16px; gap: 12px; }
+      .site-header { padding: 0 16px; gap: 12px; height: var(--header-h); }
       .logo img { height: auto; max-height: 18px; }
       .menu-btn { display: block; }
       .nav {
@@ -147,6 +149,9 @@
   </footer>
 
   <script>
+    const hdr = document.querySelector('.site-header');
+    const setH = () => document.documentElement.style.setProperty('--header-h', hdr.offsetHeight + 'px');
+    setH(); addEventListener('resize', setH); document.fonts && document.fonts.ready.then(setH);
     const btn = document.querySelector('.menu-btn'), nav = document.getElementById('site-nav');
     btn.addEventListener('click', () => {
       const open = nav.classList.toggle('open');
