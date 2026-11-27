@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://writer.realestatemarketing.pro/icon-512.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     /* Values measured from www.realestatemarketing.pro at 1440px wide */
     :root { --header-h: 101px; --pad: 4vw; }
@@ -40,9 +40,15 @@
 
     /* Chat fills the first screen under the header */
     /* Chat leaves a band at the bottom so the footer is visible and the page can scroll */
-    :root { --peek: 140px; }
-    .chat { display: block; border: 0; width: 100%; min-height: 480px;
-      height: calc(100vh - var(--header-h) - var(--peek)); height: calc(100dvh - var(--header-h) - var(--peek)); }
+    :root { --peek: 140px; --band: 124px; }
+    .chat { display: block; border: 0; width: 100%; min-height: 420px;
+      height: calc(100vh - var(--header-h) - var(--band) - var(--peek)); height: calc(100dvh - var(--header-h) - var(--band) - var(--peek)); }
+
+    /* Title band, like the black top section on the site's pages */
+    .title-band { background: #000; color: #fff; text-align: center; height: var(--band);
+      display: flex; flex-direction: column; justify-content: center; padding: 0 24px; }
+    .title-band h1 { margin: 0; font-weight: 600; font-size: 34px; letter-spacing: .01em; line-height: 1.2; }
+    .title-band p { margin: 8px 0 0; color: #aaa; font-size: 17px; font-weight: 300; }
 
     /* Footer (matches the site footer) */
     .site-footer { background: #000; color: #fff; padding: 64px var(--pad) 56px; }
@@ -58,7 +64,9 @@
     .f-badges img { width: 323px; height: auto; display: block; }
 
     @media (max-width: 1100px) {
-      :root { --header-h: 64px; --peek: 96px; }
+      :root { --header-h: 64px; --peek: 96px; --band: 92px; }
+      .title-band h1 { font-size: 24px; }
+      .title-band p { font-size: 14px; margin-top: 4px; }
       .site-header { padding: 0 16px; gap: 12px; }
       .logo img { height: auto; max-height: 18px; }
       .menu-btn { display: block; }
@@ -97,6 +105,11 @@
       <a href="https://www.realestatemarketing.pro/contact">CONTACT</a>
     </nav>
   </header>
+
+  <section class="title-band">
+    <h1>LISTING WRITER PRO</h1>
+    <p>AI listing descriptions, MLS-ready and Fair Housing compliant</p>
+  </section>
 
   <iframe class="chat" src="https://rg1.chatbotbuilder.net/rg1-1" title="Listing Writer Pro" allow="clipboard-read; clipboard-write"></iframe>
 
