@@ -15,41 +15,64 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
   <style>
-    :root { --ink: #000; --header-h: 84px; }
+    /* Values measured from www.realestatemarketing.pro at 1440px wide */
+    :root { --header-h: 101px; --pad: 4vw; }
     * { box-sizing: border-box; }
-    html, body { margin: 0; height: 100%; background: #ffffff; overflow-x: hidden; }
-    body { display: flex; flex-direction: column; height: 100vh; height: 100dvh; }
+    html, body { margin: 0; background: #fff; overflow-x: hidden; }
+    body { font-family: "Poppins", sans-serif; font-weight: 300; font-size: 16px; color: #000; }
+
+    /* Header */
     .site-header {
-      flex: 0 0 auto; height: var(--header-h);
+      position: relative; z-index: 20; height: var(--header-h);
       display: flex; align-items: center; justify-content: space-between; gap: 24px;
-      padding: 0 4vw; background: #fff; border-bottom: 1px solid #eee;
-      font-family: "Poppins", sans-serif; font-weight: 300;
+      padding: 0 var(--pad); background: #fff;
     }
     .logo { min-width: 0; flex: 0 1 auto; }
-    .logo img { display: block; height: 30px; width: auto; max-width: 100%; object-fit: contain; object-position: left center; }
-    .nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px 22px; }
+    .logo img { display: block; height: 32px; width: auto; max-width: 100%; object-fit: contain; object-position: left center; }
+    .nav { display: flex; flex-wrap: wrap; justify-content: flex-end; column-gap: 16px; max-width: 655px; }
     .nav a {
-      color: var(--ink); text-decoration: none; font-size: 15px; letter-spacing: 0;
-      padding-bottom: 3px; background: linear-gradient(#000,#000) no-repeat left bottom / 0 1px;
-      transition: background-size .2s; white-space: nowrap;
+      color: #000; text-decoration: none; font-size: 16px; line-height: 32px; white-space: nowrap;
+      background: linear-gradient(#000,#000) no-repeat left calc(100% - 2px) / 0 1px; transition: background-size .2s;
     }
     .nav a:hover, .nav a.active { background-size: 100% 1px; }
     .menu-btn { display: none; flex: 0 0 auto; background: none; border: 0; padding: 8px; cursor: pointer; }
     .menu-btn span { display: block; width: 24px; height: 1.5px; background: #000; margin: 5px 0; }
-    iframe { flex: 1 1 auto; display: block; border: 0; width: 100%; }
+
+    /* Chat fills the first screen under the header */
+    .chat { display: block; border: 0; width: 100%; height: calc(100vh - var(--header-h)); height: calc(100dvh - var(--header-h)); }
+
+    /* Footer (matches the site footer) */
+    .site-footer { background: #000; color: #fff; padding: 64px var(--pad) 56px; }
+    .site-footer a { color: #fff; }
+    .f-grid { display: grid; grid-template-columns: 1fr auto auto; column-gap: 66px; align-items: start; }
+    .f-title { font-family: "Poppins", sans-serif; font-weight: 400; font-size: 26px; letter-spacing: .01em; margin: 0 0 58px; }
+    .f-contact p { margin: 0 0 16px; line-height: 29px; }
+    .f-social { display: flex; gap: 16px; margin-top: 34px; padding-left: 28px; }
+    .f-social svg { width: 28px; height: 28px; fill: #fff; display: block; }
+    .f-links { list-style: none; margin: 40px 0 0; padding: 0; width: 156px; }
+    .f-links li { line-height: 29px; margin-bottom: 16px; }
+    .f-badges { display: flex; justify-content: center; margin-top: 34px; }
+    .f-badges img { width: 323px; height: auto; display: block; }
+
     @media (max-width: 1100px) {
       :root { --header-h: 64px; }
-      .logo img { height: auto; max-height: 18px; }
       .site-header { padding: 0 16px; gap: 12px; }
+      .logo img { height: auto; max-height: 18px; }
       .menu-btn { display: block; }
       .nav {
-        display: none; position: fixed; top: var(--header-h); left: 0; right: 0; z-index: 10;
-        flex-direction: column; align-items: flex-start; gap: 0;
-        background: #fff; border-bottom: 1px solid #eee; padding: 8px 6vw 20px;
+        display: none; position: absolute; top: var(--header-h); left: 0; right: 0; max-width: none;
+        flex-direction: column; align-items: flex-start; background: #fff;
+        border-bottom: 1px solid #eee; padding: 8px 24px 20px;
       }
       .nav.open { display: flex; }
-      .nav a { font-size: 17px; padding: 12px 0; background: none; }
+      .nav a { font-size: 17px; line-height: 48px; background: none; }
       .nav a.active { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+      .site-footer { padding: 48px 24px 40px; }
+      .f-grid { grid-template-columns: 1fr 1fr; row-gap: 8px; }
+      .f-left { grid-column: 1 / -1; }
+      .f-title { font-size: 22px; margin-bottom: 28px; }
+      .f-links { margin-top: 24px; width: auto; }
+      .f-badges img { width: 260px; }
     }
   </style>
 </head>
@@ -71,11 +94,42 @@
       <a href="https://www.realestatemarketing.pro/contact">CONTACT</a>
     </nav>
   </header>
-  <iframe
-    src="https://rg1.chatbotbuilder.net/rg1-1"
-    title="Listing Writer Pro"
-    allow="clipboard-read; clipboard-write"></iframe>
-  <noscript>Open the writer at <a href="https://rg1.chatbotbuilder.net/rg1-1">rg1.chatbotbuilder.net/rg1-1</a>.</noscript>
+
+  <iframe class="chat" src="https://rg1.chatbotbuilder.net/rg1-1" title="Listing Writer Pro" allow="clipboard-read; clipboard-write"></iframe>
+
+  <footer class="site-footer">
+    <div class="f-grid">
+      <div class="f-left">
+        <p class="f-title">REAL ESTATE MARKETING .PRO</p>
+        <div class="f-contact">
+          <p><a href="mailto:hello@realestatemarketing.pro">hello@realestatemarketing.pro</a></p>
+          <p><a href="sms:9177059181">(917) 705-9181</a></p>
+        </div>
+        <div class="f-social">
+          <a href="http://instagram.com/real_estate_marketing.pro" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 2c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.4 2.1-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-2.1-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.4a4.4 4.4 0 1 1 0 8.8 4.4 4.4 0 0 1 0-8.8zm0 7.2a2.8 2.8 0 1 0 0-5.6 2.8 2.8 0 0 0 0 5.6zm5.6-7.4a1 1 0 1 1-2.1 0 1 1 0 0 1 2.1 0z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61552153254970&amp;mibextid=LQQJ4d" aria-label="Facebook" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.5c0-.9.3-1.6 1.6-1.6h1.7V4.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.3v3.2h2.8V22h3.4z"/></svg>
+          </a>
+        </div>
+      </div>
+      <ul class="f-links">
+        <li><a href="https://www.realestatemarketing.pro/about">About</a></li>
+        <li><a href="https://www.realestatemarketing.pro/services">Services</a></li>
+        <li><a href="https://www.realestatemarketing.pro/pricing">Pricing</a></li>
+        <li><a href="https://www.realestatemarketing.pro/testimonials">Testimonials</a></li>
+      </ul>
+      <ul class="f-links">
+        <li><a href="https://www.realestatemarketing.pro/terms">Terms</a></li>
+        <li><a href="https://www.realestatemarketing.pro/marketing-kit">Marketing Kit</a></li>
+        <li><a href="https://www.realestatemarketing.pro/client-portal">Client Portal</a></li>
+        <li><a href="https://www.realestatemarketing.pro/contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="f-badges"><img src="badges.png" alt="Zillow Certified ShowingTime+ and F.C. Tucker Approved Vendor badges"></div>
+  </footer>
+
   <script>
     const btn = document.querySelector('.menu-btn'), nav = document.getElementById('site-nav');
     btn.addEventListener('click', () => {
