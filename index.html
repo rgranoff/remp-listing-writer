@@ -4,23 +4,85 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Listing Writer Pro | Real Estate Marketing Pro</title>
-  <meta name="description" content="Free AI listing description writer for real estate agents. MLS-ready, fair housing compliant descriptions from Real Estate Marketing Pro.">
+  <meta name="description" content="Free AI listing description writer for real estate agents. MLS-ready, Fair Housing compliant descriptions from Real Estate Marketing Pro.">
   <meta name="theme-color" content="#192744">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <meta property="og:title" content="Listing Writer Pro | Real Estate Marketing Pro">
   <meta property="og:description" content="Free AI listing description writer for real estate agents.">
   <meta property="og:image" content="https://writer.realestatemarketing.pro/icon-512.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
   <style>
-    html, body { margin: 0; height: 100%; background: #ffffff; }
-    iframe { display: block; border: 0; width: 100%; height: 100vh; height: 100dvh; }
+    :root { --ink: #000; --header-h: 84px; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: #ffffff; overflow-x: hidden; }
+    body { display: flex; flex-direction: column; height: 100vh; height: 100dvh; }
+    .site-header {
+      flex: 0 0 auto; height: var(--header-h);
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      padding: 0 4vw; background: #fff; border-bottom: 1px solid #eee;
+      font-family: "Poppins", sans-serif; font-weight: 300;
+    }
+    .logo { min-width: 0; flex: 0 1 auto; }
+    .logo img { display: block; height: 30px; width: auto; max-width: 100%; object-fit: contain; object-position: left center; }
+    .nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px 22px; }
+    .nav a {
+      color: var(--ink); text-decoration: none; font-size: 15px; letter-spacing: 0;
+      padding-bottom: 3px; background: linear-gradient(#000,#000) no-repeat left bottom / 0 1px;
+      transition: background-size .2s; white-space: nowrap;
+    }
+    .nav a:hover, .nav a.active { background-size: 100% 1px; }
+    .menu-btn { display: none; flex: 0 0 auto; background: none; border: 0; padding: 8px; cursor: pointer; }
+    .menu-btn span { display: block; width: 24px; height: 1.5px; background: #000; margin: 5px 0; }
+    iframe { flex: 1 1 auto; display: block; border: 0; width: 100%; }
+    @media (max-width: 1100px) {
+      :root { --header-h: 64px; }
+      .logo img { height: auto; max-height: 18px; }
+      .site-header { padding: 0 16px; gap: 12px; }
+      .menu-btn { display: block; }
+      .nav {
+        display: none; position: fixed; top: var(--header-h); left: 0; right: 0; z-index: 10;
+        flex-direction: column; align-items: flex-start; gap: 0;
+        background: #fff; border-bottom: 1px solid #eee; padding: 8px 6vw 20px;
+      }
+      .nav.open { display: flex; }
+      .nav a { font-size: 17px; padding: 12px 0; background: none; }
+      .nav a.active { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+    }
   </style>
 </head>
 <body>
+  <header class="site-header">
+    <a class="logo" href="https://www.realestatemarketing.pro/" aria-label="Real Estate Marketing Pro home">
+      <img src="remp-logo.png" alt="Real Estate Marketing Pro">
+    </a>
+    <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="https://www.realestatemarketing.pro/">HOME</a>
+      <a href="https://www.realestatemarketing.pro/services">SERVICES</a>
+      <a href="https://www.realestatemarketing.pro/pricing">PRICING</a>
+      <a href="https://www.realestatemarketing.pro/marketing-kit">MARKETING KIT</a>
+      <a href="https://www.realestatemarketing.pro/client-portal">CLIENT PORTAL</a>
+      <a href="https://www.realestatemarketing.pro/testimonials">TESTIMONIALS</a>
+      <a href="https://www.realestatemarketing.pro/about">ABOUT</a>
+      <a class="active" href="https://www.realestatemarketing.pro/listing-writer-pro" aria-current="page">LISTING WRITER PRO</a>
+      <a href="https://www.realestatemarketing.pro/contact">CONTACT</a>
+    </nav>
+  </header>
   <iframe
     src="https://rg1.chatbotbuilder.net/rg1-1"
     title="Listing Writer Pro"
     allow="clipboard-read; clipboard-write"></iframe>
   <noscript>Open the writer at <a href="https://rg1.chatbotbuilder.net/rg1-1">rg1.chatbotbuilder.net/rg1-1</a>.</noscript>
+  <script>
+    const btn = document.querySelector('.menu-btn'), nav = document.getElementById('site-nav');
+    btn.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+  </script>
 </body>
 </html>
